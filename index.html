@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a2d">
+    <meta
+      name="description"
+      content="Apresentação interativa sobre o algoritmo de ordenação QuickSort."
+    >
+    <title>QuickSort — apresentação interativa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="QuickSort, início">
+        <span class="brand-mark" aria-hidden="true">Q</span>
+        <span>Algoritmos <span class="brand-muted">/</span> QuickSort</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação da apresentação">
+        <a href="#conceito">Conceito</a>
+        <a href="#complexidade">Complexidade</a>
+        <a href="#visualizacao">Animação</a>
+        <a href="#codigo">Código</a>
+        <a href="#comparacao">Comparação</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section-shell" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> ALGORITMOS DE ORDENAÇÃO</p>
+          <h1>Quick<span>Sort</span></h1>
+          <p class="hero-lede">
+            Dividir para conquistar: escolha um pivô, particione o vetor e deixe
+            a recursão fazer o restante.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#visualizacao">Ver o algoritmo em ação <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="#conceito">Explorar a apresentação</a>
+          </div>
+          <div class="hero-facts" aria-label="Resumo do QuickSort">
+            <div><strong>O(n log n)</strong><span>caso médio</span></div>
+            <div><strong>In-place*</strong><span>pouca memória extra</span></div>
+            <div><strong>Não estável</strong><span>ordem relativa pode mudar</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Ilustração de um vetor sendo dividido pelo pivô">
+          <div class="art-label"><span class="live-dot"></span> DIVIDIR · PARTICIONAR · REPETIR</div>
+          <div class="art-vector">
+            <span>8</span><span>3</span><span>7</span><span class="art-pivot">5<small>pivô</small></span><span>2</span><span>9</span><span>1</span>
+          </div>
+          <div class="art-split"><i></i><i></i><i></i></div>
+          <div class="art-groups"><span>menores que 5</span><span>maiores que 5</span></div>
+          <div class="art-caption">Subproblemas menores, mesma ideia.</div>
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+        </div>
+      </section>
+
+      
+
+     
+
+      <section class="section-shell section-block" id="visualizacao">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 — ANIMAÇÃO INTERATIVA</p>
+            <h2>Acompanhe cada partição</h2>
+          </div>
+          <p class="section-intro">O pivô é o último elemento do trecho. Veja as comparações e trocas, passo a passo.</p>
+        </div>
+        <div class="visualizer">
+          <div class="viz-topline">
+            <div class="viz-title"><span class="live-dot"></span><strong>QuickSort em execução</strong></div>
+            <div class="legend">
+              <span><i class="legend-pivot"></i> Pivô</span>
+              <span><i class="legend-active"></i> Em comparação</span>
+              <span><i class="legend-sorted"></i> Posição definitiva</span>
+            </div>
+          </div>
+          <div class="viz-board" id="viz-board" aria-label="Visualização das barras do vetor" aria-live="polite"></div>
+          <div class="viz-status">
+            <span class="status-index" id="step-counter">Passo 0 de 0</span>
+            <span id="step-description">Escolha um vetor e inicie a animação.</span>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+          <div class="viz-controls">
+            <label class="input-label" for="array-input">Vetor
+              <input id="array-input" type="text" value="8, 3, 7, 5, 2, 9, 1" aria-describedby="input-help">
+            </label>
+            <button class="button button-primary" id="play-button" type="button">▶ Iniciar</button>
+            <button class="button button-secondary" id="previous-button" type="button" aria-label="Voltar um passo">← Anterior</button>
+            <button class="button button-secondary" id="next-button" type="button">Próximo →</button>
+            <button class="button button-quiet" id="reset-button" type="button">↺ Reiniciar</button>
+            <label class="speed-control" for="speed-input">Velocidade
+              <input id="speed-input" type="range" min="1" max="5" value="3">
+              <span id="speed-label">Normal</span>
+            </label>
+          </div>
+          <p class="input-help" id="input-help">Digite de 2 a 20 números inteiros separados por vírgula ou espaço. Valores entre −999 e 999.</p>
+          <p class="input-error" id="input-error" role="alert"></p>
+          <div class="trace-panel">
+            <div class="trace-heading"><span>RASTRO DO ALGORITMO</span><span id="trace-count">0 eventos</span></div>
+            <ol id="trace-list" aria-label="Eventos da ordenação"></ol>
+          </div>
+        </div>
+      </section>
+
+    
+
+      <section class="section-shell section-block" id="comparacao">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">05 — QUANDO USAR?</p>
+            <h2>QuickSort e outros algoritmos</h2>
+          </div>
+          <p class="section-intro">Não existe um algoritmo melhor para todo cenário. Considere desempenho, memória e estabilidade.</p>
+        </div>
+        <div class="comparison-wrap">
+          <table>
+            <thead><tr><th>Algoritmo</th><th>Melhor caso</th><th>Médio</th><th>Pior caso</th><th>Memória extra</th><th>Estável?</th></tr></thead>
+            <tbody>
+              <tr class="highlight-row"><th>QuickSort</th><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)*</td><td>Não</td></tr>
+              <tr><th>Merge Sort</th><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td><td>Sim</td></tr>
+              <tr><th>Insertion Sort</th><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>Sim</td></tr>
+              <tr><th>Bubble Sort</th><td>O(n)*</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>Sim</td></tr>
+              <tr><th>Selection Sort</th><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>Não*</td></tr>
+            </tbody>
+          </table>
+          <p class="fine-print">* QuickSort: pior caso da pilha recursiva pode chegar a O(n). Bubble Sort: melhor caso O(n) com detecção de vetor já ordenado. Selection Sort convencional não é estável.</p>
+        </div>
+        <div class="takeaway">
+          <span class="takeaway-icon" aria-hidden="true">✦</span>
+          <p><strong>Em resumo:</strong> QuickSort costuma ser uma ótima escolha para ordenar vetores em memória por sua velocidade média e baixo uso de memória auxiliar. Se é necessário garantir O(n log n) no pior caso ou preservar a ordem de elementos iguais, considere alternativas como Merge Sort.</p>
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <div class="section-shell closing-inner">
+          <p class="eyebrow">FIM DA APRESENTAÇÃO</p>
+          <h2>Divida o problema.<br><span>Encontre a ordem.</span></h2>
+          <p>QuickSort — uma ideia simples, recursiva e poderosa.</p>
+          <a class="button button-primary" href="#inicio">Voltar ao início ↑</a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><div class="section-shell"><span>Algoritmos e Estruturas de Dados</span><span>QuickSort · Apresentação interativa</span></div></footer>
+  </body>
+</html>
